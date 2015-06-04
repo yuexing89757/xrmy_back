@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xrmy.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="cn.xrmy.pojo.Product" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="DOUBLE" />
+    <result column="PHOTO" property="photo" jdbcType="VARCHAR" />
+    <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+    <result column="if_recommend" property="ifRecommend" jdbcType="BIT" />
+    <result column="VIEDO_TITLE" property="viedoTitle" jdbcType="VARCHAR" />
+    <result column="VIEDO_URL" property="viedoUrl" jdbcType="VARCHAR" />
+    <result column="VIEDO_PHOTO" property="viedoPhoto" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.xrmy.pojo.Product" extends="BaseResultMap" >
+    <result column="DESCRIBTION" property="describtion" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, PRICE, PHOTO, PRODUCT_TYPE, if_recommend, VIEDO_TITLE, VIEDO_URL, VIEDO_PHOTO
+  </sql>
+  <sql id="Blob_Column_List" >
+    DESCRIBTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from product
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from product
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.xrmy.pojo.Product" >
+    insert into product (ID, NAME, PRICE, 
+      PHOTO, PRODUCT_TYPE, if_recommend, 
+      VIEDO_TITLE, VIEDO_URL, VIEDO_PHOTO, 
+      DESCRIBTION)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
+      #{photo,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, #{ifRecommend,jdbcType=BIT}, 
+      #{viedoTitle,jdbcType=VARCHAR}, #{viedoUrl,jdbcType=VARCHAR}, #{viedoPhoto,jdbcType=VARCHAR}, 
+      #{describtion,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xrmy.pojo.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="photo != null" >
+        PHOTO,
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE,
+      </if>
+      <if test="ifRecommend != null" >
+        if_recommend,
+      </if>
+      <if test="viedoTitle != null" >
+        VIEDO_TITLE,
+      </if>
+      <if test="viedoUrl != null" >
+        VIEDO_URL,
+      </if>
+      <if test="viedoPhoto != null" >
+        VIEDO_PHOTO,
+      </if>
+      <if test="describtion != null" >
+        DESCRIBTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="ifRecommend != null" >
+        #{ifRecommend,jdbcType=BIT},
+      </if>
+      <if test="viedoTitle != null" >
+        #{viedoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="viedoUrl != null" >
+        #{viedoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="viedoPhoto != null" >
+        #{viedoPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="describtion != null" >
+        #{describtion,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xrmy.pojo.Product" >
+    update product
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="photo != null" >
+        PHOTO = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="ifRecommend != null" >
+        if_recommend = #{ifRecommend,jdbcType=BIT},
+      </if>
+      <if test="viedoTitle != null" >
+        VIEDO_TITLE = #{viedoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="viedoUrl != null" >
+        VIEDO_URL = #{viedoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="viedoPhoto != null" >
+        VIEDO_PHOTO = #{viedoPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="describtion != null" >
+        DESCRIBTION = #{describtion,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.xrmy.pojo.Product" >
+    update product
+    set NAME = #{name,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DOUBLE},
+      PHOTO = #{photo,jdbcType=VARCHAR},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      if_recommend = #{ifRecommend,jdbcType=BIT},
+      VIEDO_TITLE = #{viedoTitle,jdbcType=VARCHAR},
+      VIEDO_URL = #{viedoUrl,jdbcType=VARCHAR},
+      VIEDO_PHOTO = #{viedoPhoto,jdbcType=VARCHAR},
+      DESCRIBTION = #{describtion,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xrmy.pojo.Product" >
+    update product
+    set NAME = #{name,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DOUBLE},
+      PHOTO = #{photo,jdbcType=VARCHAR},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      if_recommend = #{ifRecommend,jdbcType=BIT},
+      VIEDO_TITLE = #{viedoTitle,jdbcType=VARCHAR},
+      VIEDO_URL = #{viedoUrl,jdbcType=VARCHAR},
+      VIEDO_PHOTO = #{viedoPhoto,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
