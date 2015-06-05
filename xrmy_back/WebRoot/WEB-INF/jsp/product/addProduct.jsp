@@ -10,15 +10,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.3.2.js"></script> 
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-calendar.js"></script> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/jquery-calendar.css" /> 
-<script type="text/javascript">
-$(function (){
-   var productType='${product.productType}';
-   $("#productType").val(productType);	
-   var ifRecommend='${product.ifRecommend}';
-   $("#ifRecommend").val(ifRecommend);	
-});
 
-</script>
 </head>
 <body> 
 <!-- 显示错误信息 -->
@@ -28,9 +20,9 @@ $(function (){
 </c:forEach>
 </c:if>
 
-<form id="itemForm" action="${pageContext.request.contextPath }/product/editProductSubmit.action" method="post" >
-<input type="hidden" name="id" value="${product.id }"/>
-修改商品信息：
+<form id="itemForm" action="${pageContext.request.contextPath }/product/addProductSubmit.action" method="post" >
+
+添加商品信息：
 <table width="100%" border=1>
 <tr>
 	<td>标题</td>

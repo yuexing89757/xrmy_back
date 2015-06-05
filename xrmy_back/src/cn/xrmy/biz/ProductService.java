@@ -23,5 +23,11 @@ public interface ProductService {
 	
 	public void updateProduct(Long id,ProductCustom proCustom) throws Exception;
 	
-
+	
+	//添加商品提交
+    public void insertSelective(Product product) throws Exception;
+    
+  //删除
+    public void deleteByPrimaryKey(Long id) throws Exception;
+		
 }

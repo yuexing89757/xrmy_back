@@ -50,9 +50,6 @@ public class NewsController {
 	
 	
 	@RequestMapping(value ="/editNews", method = { RequestMethod.POST,RequestMethod.GET })
-	// @RequestParam里边指定request传入参数名称和形参进行绑定。
-	// 通过required属性指定参数是否必须要传入
-	// 通过defaultValue可以设置默认值，如果id参数没有传入，将默认值和形参绑定。
 	public String editItems(Model model,
 			@RequestParam(value = "id", required = true) Long items_id)throws Exception {
 		// 调用service根据商品id查询商品信息
@@ -63,7 +60,7 @@ public class NewsController {
 		return "news/editNews";
 	}
 	
-	
+	//提交编辑
 		@RequestMapping("/editNewsSubmit")
 		public String editItemsSubmit(
 				Model model,
@@ -81,5 +78,39 @@ public class NewsController {
 			//return "success";
 		}
 
-
+		
+		//添加新闻
+		@RequestMapping("/addNews")
+		public String addNews() throws Exception {
+						
+			return "news/addNews";
+							
+		}
+		
+		
+		
+		//添加新闻
+		@RequestMapping("/addNewsSubmit")
+		public String addNewsSubmit(
+						Model model,
+						HttpServletRequest request,
+						News news
+						) throws Exception {
+					// 调用service更新商品信息，页面需要将商品信息传到此方法
+					newsService.addNews(news);
+					// 重定向到商品查询列表
+					 return "redirect:queryNews.action";
+					// 页面转发
+					// return "forward:queryItems.action";
+					//return "success";
+				}
+		
+		//删除新闻
+				@RequestMapping("/deleteNews")
+				public String deleteNews( Long id) throws Exception {
+							// 调用service更新商品信息，页面需要将商品信息传到此方法
+					 newsService.deleteByPrimaryKey(id);
+							// 重定向到商品查询列表
+					 return "redirect:queryNews.action";
+				}
 }

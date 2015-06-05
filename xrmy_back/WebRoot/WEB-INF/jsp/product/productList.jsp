@@ -31,20 +31,23 @@
 	<td>${item.describtion }</td>
 	<td>${item.viedoUrl }</td>
 	<td>
-			<c:if test="${items.ifRecommend ==0}">
-					是
+			<c:if test="${item.ifRecommend==true}">
+			     是
 			</c:if>
-			<c:if test="${items.ifRecommend ==1}">
-					否
+			<c:if test="${item.ifRecommend==false}">
+			    否
 			</c:if>
 	</td>
 	
-	<td><a href="${pageContext.request.contextPath }/product/editProduct.action?id=${item.id}">修改</a></td>
+	<td><a href="${pageContext.request.contextPath }/product/editProduct.action?id=${item.id}">修改</a>
+	    <a href="javascript:if(confirm('确实要删除该内容吗?'))location.href='${pageContext.request.contextPath }/product/deleteProduct.action?id=${item.id}'">删除</a>
+	</td>
 
 </tr>
 </c:forEach>
 
 </table>
+<center><a href="${pageContext.request.contextPath }/product/addProduct.action">添加新闻</a></center>
 </body>
 
 </html>

@@ -9,16 +9,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.3.2.js"></script> 
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-calendar.js"></script> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/jquery-calendar.css" /> 
-<script type="text/javascript">
-$(function (){
-   var abc='${news.newsType}';
-   $("#newsType").val(abc);	
-});
-function abc(){
-	alert($("#calendar1").val());
-}
-</script>
-
 </head>
 <body> 
 <!-- 显示错误信息 -->
@@ -28,9 +18,9 @@ function abc(){
 </c:forEach>
 </c:if>
 
-<form id="itemForm" action="${pageContext.request.contextPath }/news/editNewsSubmit.action" method="post" >
-<input type="hidden" name="id" value="${news.id }"/>
-修改新闻信息：
+<form id="itemForm" action="${pageContext.request.contextPath }/news/addNewsSubmit.action" method="post" >
+
+添加新闻信息：
 <table width="100%" border=1>
 <tr>
 	<td>标题</td>

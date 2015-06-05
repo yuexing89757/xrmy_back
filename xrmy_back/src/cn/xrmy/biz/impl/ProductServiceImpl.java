@@ -50,38 +50,19 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public void updateProduct(Long id, ProductCustom proCustom)
 			throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	
-	
-	
-
-	/*@Override
-	public List<NewsCustom> findNewsList(NewsQueryVo newsQueryVo)
-			throws Exception {
-		//通过ItemsMapperCustom查询数据库
-		return newsMapperCustom.findNewsList(newsQueryVo);
+		proCustom.setId(id);
+		productMapper.updateByPrimaryKeyWithBLOBs(proCustom);
 	}
 
 	@Override
-	public News findNewsById(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return newsMapper.selectByPrimaryKey(id);
+	public void insertSelective(Product product) throws Exception {
+		productMapper.insertSelective(product);
 	}
 
 	@Override
-	public void updateNews(Integer id, NewsCustom newsCustom) throws Exception {
-		        //添加业务校验，通常在service接口对关键参数进行校验
-				//校验 id是否为空，如果为空抛出异常
-				//更新商品信息使用updateByPrimaryKeyWithBLOBs根据id更新items表中所有字段，包括 大文本类型字段
-				//updateByPrimaryKeyWithBLOBs要求必须转入id
-		         newsCustom.setId(id);
-		         newsMapper.updateByPrimaryKeyWithBLOBs(newsCustom);
-	}*/
-
-
+	public void deleteByPrimaryKey(Long id) throws Exception {
+		productMapper.deleteByPrimaryKey(id);
+	}
+	
 
 }

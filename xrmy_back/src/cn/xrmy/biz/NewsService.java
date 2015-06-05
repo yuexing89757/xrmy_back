@@ -13,26 +13,16 @@ public interface NewsService {
 	public List<NewsCustom> findNewsList(NewsQueryVo newsQueryVo) throws Exception;
 	
 	//根据id查询商品信息
-	/**
-	 * 
-	 * <p>Title: findItemsById</p>
-	 * <p>Description: </p>
-	 * @param id 查询商品的id
-	 * @return
-	 * @throws Exception
-	 */
 	public News findNewsById(Long id) throws Exception;
 	
 	//修改商品信息
-	/**
-	 * 
-	 * <p>Title: updateItems</p>
-	 * <p>Description: </p>
-	 * @param id 修改商品的id
-	 * @param itemsCustom 修改的商品信息
-	 * @throws Exception
-	 */
 	public void updateNews(Long id,NewsCustom newsCustom) throws Exception;
+	
+	//添加新闻信息
+	public void addNews(News news) throws Exception;
+	
+	//删除新闻信息
+	public void deleteByPrimaryKey(Long id) throws Exception;
 	
 
 }

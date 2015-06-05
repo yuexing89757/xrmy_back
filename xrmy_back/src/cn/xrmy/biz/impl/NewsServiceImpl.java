@@ -3,6 +3,7 @@ package cn.xrmy.biz.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import cn.xrmy.biz.NewsService;
 import cn.xrmy.mapper.NewsMapper;
 import cn.xrmy.mapper.NewsMapperCustom;
@@ -48,6 +49,16 @@ public class NewsServiceImpl implements NewsService{
 				//updateByPrimaryKeyWithBLOBs要求必须转入id
 		         newsCustom.setId(id);
 		         newsMapper.updateByPrimaryKeyWithBLOBs(newsCustom);
+	}
+
+	@Override
+	public void addNews(News news) throws Exception {
+		newsMapper.insertSelective(news);
+	}
+
+	@Override
+	public void deleteByPrimaryKey(Long id) throws Exception {
+		newsMapper.deleteByPrimaryKey(id);
 	}
 
 
