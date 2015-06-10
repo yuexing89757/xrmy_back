@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查询商品列表</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/table.css" /> 
 </head>
 <body> 
 
@@ -28,7 +29,7 @@
 	<td>${item.price }</td>
 	<td>${item.photo }</td>
 	<td>${item.productType }</td>
-	<td>${item.describtion }</td>
+	<td><div class="discribe">${item.describtion }</div></td>
 	<td>${item.viedoUrl }</td>
 	<td>
 			<c:if test="${item.ifRecommend==true}">
@@ -47,7 +48,7 @@
 </c:forEach>
 
 </table>
-<center><a href="${pageContext.request.contextPath }/product/addProduct.action">添加新闻</a></center>
+<center><a href="${pageContext.request.contextPath }/product/addProduct.action">添加商品</a></center>
 </body>
 
 </html>

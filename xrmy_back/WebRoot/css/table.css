@@ -1,0 +1,12 @@
+.content{
+	display:inline-block;
+	height: 124px;
+	width: 980px;
+	overflow:scroll;
+}
+.discribe{
+	display:inline-block;
+	height: 72px;
+	width: 770px;
+	overflow:scroll;
+}

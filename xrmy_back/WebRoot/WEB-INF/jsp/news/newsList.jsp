@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查询商品列表</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/table.css" /> 
 </head>
 <body> 
 
@@ -29,7 +30,7 @@
 	<td>${item.title }</td>
 	<td>${item.newsFrom }</td>
 	<td><fmt:formatDate value="${item.createTime}" pattern="yyyy-MM-dd"/></td>
-	<td>${item.content }</td>
+	<td><div class="content">${item.content }</div></td>
 	
 	<td><a href="${pageContext.request.contextPath }/news/editNews.action?id=${item.id}">修改</a>
 	    <a href="javascript:if(confirm('确实要删除该内容吗?'))location.href='${pageContext.request.contextPath }/news/deleteNews.action?id=${item.id}'">删除</a>
