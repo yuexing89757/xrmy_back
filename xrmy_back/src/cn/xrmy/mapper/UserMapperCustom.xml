@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xrmy.mapper.UserMapperCustom" >
+  <resultMap id="BaseResultMap" type="cn.xrmy.pojo.UserCustom" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, userName, password
+  </sql>
+
+ <!-- 定义商品查询的sql片段，就是商品查询条件 -->
+   <sql id="query_user_where">
+   		<if test="userCustom!=null">
+   			<if test="userCustom.username!=null and userCustom.username!=''">
+   				and user.username = '${userCustom.username}'
+   			</if>
+   			<if test="userCustom.password!=null and userCustom.password!=''">
+   				and user.password = '${userCustom.password}'
+   			</if>
+   		</if>
+	
+   </sql>
+   
+	
+  	<!-- 商品列表查询 -->
+  	<!-- parameterType传入包装对象(包装了查询条件)
+  		resultType建议使用扩展对象
+  	 -->
+  	<select id="findUsersList" parameterType="cn.xrmy.pojo.UserQueryVo"
+  		 resultMap="BaseResultMap">
+  		SELECT 
+        <include refid="Base_Column_List" />
+         FROM  user 
+  	</select>
+  	
+  	
+  	<select id="findNewsByNameAndPwd" parameterType="cn.xrmy.pojo.UserQueryVo"
+  		 resultMap="BaseResultMap">
+  		SELECT 
+        <include refid="Base_Column_List" />
+         FROM  user 
+  		<where>
+  			<include refid="query_user_where"></include>
+  		</where>
+  	</select>
+  	
+</mapper>

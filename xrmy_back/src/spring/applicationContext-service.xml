@@ -15,5 +15,5 @@
 <!-- 商品管理的service -->
 <bean id="newsService" class="cn.xrmy.biz.impl.NewsServiceImpl"/>
 <bean id="productService" class="cn.xrmy.biz.impl.ProductServiceImpl"/>
-
+<bean id="userService" class="cn.xrmy.biz.impl.UserServiceImpl"/>
 </beans>
