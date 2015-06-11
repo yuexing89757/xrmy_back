@@ -8,20 +8,44 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查询商品列表</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/table.css" /> 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/admin.css" /> 
+
+<script type="text/javascript">
+function altRows(id){
+	if(document.getElementsByTagName){  
+		
+		var table = document.getElementById(id);  
+		var rows = table.getElementsByTagName("tr"); 
+		 
+		for(i = 0; i < rows.length; i++){          
+			if(i % 2 == 0){
+				rows[i].className = "evenrowcolor";
+			}else{
+				rows[i].className = "oddrowcolor";
+			}      
+		}
+	}
+}
+
+window.onload=function(){
+	altRows('alternatecolor');
+}
+</script>
 </head>
 <body> 
+<%@ include file="../head.jsp" %> 
 
 商品列表：
-<table width="100%" border=1>
+<table  class="altrowstable" id="alternatecolor">
 <tr>
-	<td>商品标题</td>
-	<td>商品价格</td>
-	<td>商品状态</td>
-	<td>商品图片</td>
-	<td>商品描述</td>
-	<td>视频地址</td>
-	<td>是否推荐</td>
-	<td>操作</td>
+	<th>商品标题</th>
+	<th>商品价格</th>
+	<th>商品状态</th>
+	<th>商品图片</th>
+	<th>商品描述</th>
+	<th>视频地址</th>
+	<th>是否推荐</th>
+	<th>操作</th>
 </tr>
 <c:forEach items="${productList }" var="item">
 <tr>

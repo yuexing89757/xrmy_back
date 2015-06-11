@@ -1,16 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>系统登陆</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>用户登录</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/User_Login.css" /> 
 </head>
-<body>
-<form action="${pageContext.request.contextPath }/login.action" method="post">
-用户账号：<input type="text" name="userCustom.username" /><br/>
-用户密码 ：<input type="password" name="userCustom.password" /><br/>
-<input type="submit" value="登陆"/>
-</form>
+
+<body id="userlogin_body">
+	<div></div>
+	<div id="user_login">
+		<dl>
+			<dd id="user_top">
+				<ul>
+					<li class="user_top_l"></li>
+					<li class="user_top_c"></li>
+					<li class="user_top_r"></li>
+				</ul>
+			</dd>
+			<dd id="user_main">
+				<form action="${pageContext.request.contextPath }/login.action"
+					method="post">
+					<ul>
+						<li class="user_main_l"></li>
+						<li class="user_main_c">
+							<div class="user_main_box">
+								<ul>
+									<li class="user_main_text">用户名：</li>
+									<li class="user_main_input"><input
+										class="TxtUserNameCssClass" id="admin_user" maxlength="20"
+										name="userCustom.username"></li>
+								</ul>
+								<ul>
+									<li class="user_main_text">密&nbsp;&nbsp;&nbsp;&nbsp;码：</li>
+									<li class="user_main_input"><input
+										class="TxtPasswordCssClass" id="admin_psd"
+										name="userCustom.password" type="password"></li>
+								</ul>
+								<ul>
+									<li class="user_main_text">验证码：</li>
+									<li class="user_main_input">
+									<input class="TxtValidateCodeCssClass" id="captcha" name="captcha"
+										type="text"> <img src="${pageContext.request.contextPath }/img/admin.png" alt="" /></li>
+								</ul>
+							</div>
+						</li>
+						<li class="user_main_r"><input
+							style="border: medium none; background: url('${pageContext.request.contextPath }/img/user_botton.gif') repeat-x scroll left top transparent; height: 122px; width: 111px; display: block; cursor: pointer;"
+							value="" type="submit"></li>
+					</ul>
+				</form>
+			</dd>
+			<dd id="user_bottom">
+				<ul>
+					<li class="user_bottom_l"></li>
+					<li class="user_bottom_c"><span style="margin-top: 40px;"></span>
+					</li>
+					<li class="user_bottom_r"></li>
+				</ul>
+			</dd>
+		</dl>
+	</div>
+	<span id="ValrUserName" style="display: none; color: red;"></span>
+	<span id="ValrPassword" style="display: none; color: red;"></span>
+	<span id="ValrValidateCode" style="display: none; color: red;"></span>
+	<div id="ValidationSummary1" style="display: none; color: red;"></div>
 </body>
 </html>

@@ -9,8 +9,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.3.2.js"></script> 
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-calendar.js"></script> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/jquery-calendar.css" /> 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/table.css" /> 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/admin.css" /> 
 </head>
 <body> 
+<%@ include file="../head.jsp" %> 
+
 <!-- 显示错误信息 -->
 <c:if test="${allErrors!=null }">
 	<c:forEach items="${allErrors }" var="error">
@@ -21,7 +25,7 @@
 <form id="itemForm" action="${pageContext.request.contextPath }/news/addNewsSubmit.action" method="post" >
 
 添加新闻信息：
-<table width="100%" border=1>
+<table class="altrowstable">
 <tr>
 	<td>标题</td>
 	<td><input type="text" name="title" value="${news.title }"/></td>

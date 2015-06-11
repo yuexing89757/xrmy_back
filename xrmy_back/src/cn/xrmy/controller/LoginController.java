@@ -20,10 +20,11 @@ public class LoginController {
 	public String login(HttpSession session, UserQueryVo userQueryVo)
 			throws Exception {
 
-		// 调用service进行用户身份验证
-		// ...
-		UserCustom  userCustom=userService.findNewsByNameAndPwd(userQueryVo);
-       if(null!=userCustom){
+		UserCustom  userCustom=null;
+		if(null!=userQueryVo && null!=userQueryVo.getUserCustom() && userQueryVo.getUserCustom().getUsername().length()>0){
+			userCustom=userService.findNewsByNameAndPwd(userQueryVo);
+		}
+       if(null!=userCustom && null!= userCustom.getUsername() ){
     	// 在session中保存用户身份信息
    		 session.setAttribute("username", userQueryVo.getUserCustom().getUsername());
    		// 重定向到商品列表页面

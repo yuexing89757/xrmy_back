@@ -8,22 +8,40 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查询商品列表</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/table.css" /> 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/admin.css" /> 
+
+<script type="text/javascript">
+function altRows(id){
+	if(document.getElementsByTagName){  
+		
+		var table = document.getElementById(id);  
+		var rows = table.getElementsByTagName("tr"); 
+		 
+		for(i = 0; i < rows.length; i++){          
+			if(i % 2 == 0){
+				rows[i].className = "evenrowcolor";
+			}else{
+				rows[i].className = "oddrowcolor";
+			}      
+		}
+	}
+}
+
+window.onload=function(){
+	altRows('alternatecolor');
+}
+</script>
 </head>
 <body> 
+<%@ include file="../head.jsp" %> 
 
-当前用户：${username }，
-<c:if test="${username!=null }">
- <a href="${pageContext.request.contextPath }/logout.action">退出</a>
-</c:if>
-
-商品列表：
-<table width="100%" border=1>
+<table class="altrowstable" id="alternatecolor">
 <tr>
-	<td>新闻标题</td>
-	<td>新闻出处</td>
-	<td>创建日期</td>
-	<td>新闻内容</td>
-	<td>操作</td>
+	<th>新闻标题</th>
+	<th>新闻出处</th>
+	<th>创建日期</th>
+	<th>新闻内容</th>
+	<th>操作</th>
 </tr>
 <c:forEach items="${newsList }" var="item">
 <tr>
