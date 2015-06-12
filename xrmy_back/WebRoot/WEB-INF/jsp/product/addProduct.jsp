@@ -12,8 +12,16 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/jquery-calendar.css" /> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/table.css" /> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/admin.css" /> 
-
+<script type="text/javascript">
+function ValidateNumber(e, pnumber){ 
+	if (!/^\d+$/.test(pnumber)){ 
+	$(e).val(/^\d+/.exec($(e).val())); 
+	} 
+	return false; 
+	} 
+</script>
 </head>
+
 <body> 
 <%@ include file="../head.jsp" %> 
 <!-- 显示错误信息 -->
@@ -33,7 +41,7 @@
 </tr>
 <tr>
 	<td>商品价格</td>
-	<td><input type="text" name="price" value="${product.price }"/></td>
+	<td><input type="text" name="price"  value="${product.price }"  onkeyup="return ValidateNumber($(this),value)" /></td>
 </tr>
 
 <tr>

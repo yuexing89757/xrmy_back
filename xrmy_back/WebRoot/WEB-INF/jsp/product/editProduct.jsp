@@ -19,6 +19,13 @@ $(function (){
    var ifRecommend='${product.ifRecommend}';
    $("#ifRecommend").val(ifRecommend);	
 });
+function ValidateNumber(e, pnumber){ 
+	if (!/^\d+$/.test(pnumber)){ 
+	$(e).val(/^\d+/.exec($(e).val())); 
+	} 
+	return false; 
+	} 
+</script>
 
 </script>
 </head>
@@ -41,14 +48,14 @@ $(function (){
 </tr>
 <tr>
 	<td>商品价格</td>
-	<td><input type="text" name="price" value="${product.price }"/></td>
+	<td><input type="text" name="price"   value="${product.price }"  onkeyup="return ValidateNumber($(this),value)" /></td>
 </tr>
 
 <tr>
 	<td>商品图片</td>
 	<td>
 		<c:if test="${product.photo !=null}">
-			<img src="${product.photo}" width=100 height=100/>
+			<img src="${pageContext.request.contextPath }images/product/${product.photo}" width=100 height=100/>
 		    <input type="text"  name="photo"  value="${product.photo }"/> 
 		<br/>
 		</c:if>
