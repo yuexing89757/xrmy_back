@@ -2,6 +2,8 @@ package cn.xrmy.biz;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import cn.xrmy.pojo.News;
 import cn.xrmy.pojo.NewsCustom;
 import cn.xrmy.pojo.NewsQueryVo;

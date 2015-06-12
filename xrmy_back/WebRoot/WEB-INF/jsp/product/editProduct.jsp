@@ -31,7 +31,7 @@ $(function (){
 </c:forEach>
 </c:if>
 
-<form id="itemForm" action="${pageContext.request.contextPath }/product/editProductSubmit.action" method="post" >
+<form id="itemForm" action="${pageContext.request.contextPath }/product/editProductSubmit.action" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="id" value="${product.id }"/>
 修改商品信息：
 <table class="altrowstable">
@@ -49,9 +49,10 @@ $(function (){
 	<td>
 		<c:if test="${product.photo !=null}">
 			<img src="${product.photo}" width=100 height=100/>
-			<br/>
+		    <input type="text"  name="photo"  value="${product.photo }"/> 
+		<br/>
 		</c:if>
-		<input type="text"  name="photo"  value="${product.photo }"/> 
+		<input type="file"  name="productPhoto"  value="${product.photo }"/> 
 	</td>
 </tr>
 

@@ -67,16 +67,34 @@ public class ProductController {
 	public String editItemsSubmit(Model model,
 			                        HttpServletRequest request,
 			                        Long id,
-			                        ProductCustom productCustom
+			                        ProductCustom productCustom,
+			                        MultipartFile productPhoto
 			                        ) throws Exception {
 		
+		if(null!=productPhoto){
+		       //原始名称
+				String originalFilename = productPhoto.getOriginalFilename();
+				//上传图片
+				if(productPhoto!=null && originalFilename!=null && originalFilename.length()>0){
+					
+					//存储图片的物理路径
+					//String pic_path = "F:\\develop\\";
+					String pic_path = "/opt/tomcat/webapps/ROOT/images/product/";
+					//新的图片名称
+					String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
+					//新图片
+					File newFile = new File(pic_path+newFileName);
+					//将内存中的数据写入磁盘
+					productPhoto.transferTo(newFile);
+					//将新图片名称写到itemsCustom中
+					productCustom.setPhoto(newFileName);
+				}
+	     }
 		// 调用service更新商品信息，页面需要将商品信息传到此方法
-		productService.updateProduct(id, productCustom);
+		 productService.updateProduct(id, productCustom);
 		// 重定向到商品查询列表
 		 return "redirect:queryProduct.action";
-		// 页面转发
-		// return "forward:queryItems.action";
-		//return "success";
+
 	}
 	
 	@RequestMapping("/addProduct")
@@ -84,12 +102,33 @@ public class ProductController {
 	
 		 return "product/addProduct";
 	}
+	
+	
 	@RequestMapping("/addProductSubmit")
 	public String addItemsSubmit(Model model,
 			                        HttpServletRequest request,
-			                        Product product
+			                        Product product,
+			                        MultipartFile productPhoto//接收商品图片
 			                        ) throws Exception {
-		
+		if(null!=productPhoto){
+		       //原始名称
+				String originalFilename = productPhoto.getOriginalFilename();
+				//上传图片
+				if(productPhoto!=null && originalFilename!=null && originalFilename.length()>0){
+				//	String pic_path = "F:\\develop\\";
+					//存储图片的物理路径
+					String pic_path = "/opt/tomcat/webapps/ROOT/images/product/";
+					//新的图片名称
+					String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
+					//新图片
+					File newFile = new File(pic_path+newFileName);
+					//将内存中的数据写入磁盘
+					productPhoto.transferTo(newFile);
+					//将新图片名称写到itemsCustom中
+					product.setPhoto(newFileName);
+					
+				}
+	     }
 		   // 调用service更新商品信息，页面需要将商品信息传到此方法
 		 productService.insertSelective(product);
 		// 重定向到商品查询列表

@@ -1,8 +1,11 @@
 package cn.xrmy.biz.impl;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
 import cn.xrmy.biz.NewsService;
 import cn.xrmy.biz.ProductService;
@@ -47,22 +50,23 @@ public class ProductServiceImpl implements ProductService{
 		return productMapper.selectByPrimaryKey(id);
 	}
 
-	@Override
-	public void updateProduct(Long id, ProductCustom proCustom)
-			throws Exception {
-		proCustom.setId(id);
-		productMapper.updateByPrimaryKeyWithBLOBs(proCustom);
-	}
 
-	@Override
-	public void insertSelective(Product product) throws Exception {
-		productMapper.insertSelective(product);
-	}
 
 	@Override
 	public void deleteByPrimaryKey(Long id) throws Exception {
 		productMapper.deleteByPrimaryKey(id);
 	}
+
+	@Override
+	public void insertSelective(Product product)throws Exception {
+		productMapper.insertSelective(product);
+	}
+
+	public void updateProduct(Long id, ProductCustom proCustom) throws Exception {
+			proCustom.setId(id);
+			productMapper.updateByPrimaryKeyWithBLOBs(proCustom);
+		}
+	
 	
 
 }

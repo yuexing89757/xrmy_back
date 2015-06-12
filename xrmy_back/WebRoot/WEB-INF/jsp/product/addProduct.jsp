@@ -23,7 +23,7 @@
 </c:forEach>
 </c:if>
 
-<form id="itemForm" action="${pageContext.request.contextPath }/product/addProductSubmit.action" method="post" >
+<form id="itemForm" action="${pageContext.request.contextPath }/product/addProductSubmit.action" method="post" enctype="multipart/form-data">
 
 添加商品信息：
 <table class="altrowstable">
@@ -39,11 +39,7 @@
 <tr>
 	<td>商品图片</td>
 	<td>
-		<c:if test="${product.photo !=null}">
-			<img src="${product.photo}" width=100 height=100/>
-			<br/>
-		</c:if>
-		<input type="text"  name="photo"  value="${product.photo }"/> 
+		<input type="file"  name="productPhoto"  value="${product.photo }"/> 
 	</td>
 </tr>
 
