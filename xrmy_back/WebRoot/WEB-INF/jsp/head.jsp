@@ -25,7 +25,7 @@
 			
 			
 			
-		<td style="font-weight: bold; color: #fff; padding-top: 20px"
+		<td width=260 style="font-weight: bold; color: #fff; padding-top: 20px"
 			align=middle>当前用户：${username }， <c:if test="${username!=null }">
 				<a href="${pageContext.request.contextPath }/logout.action"><span class="wordclass">退出</span></a>
 			</c:if>

@@ -34,7 +34,7 @@ window.onload=function(){
 </head>
 <body> 
 <%@ include file="../head.jsp" %> 
-
+新闻列表:
 <table class="altrowstable" id="alternatecolor">
 <tr>
 	<th>新闻标题</th>
